@@ -1,20 +1,10 @@
-const path = require("path");
+// Serve JSON only — no file system access, so no ENOENT on Render.
+// Serve your real HTML from the frontend (e.g. Vercel) or static hosting.
 
-/**
- * Serve the home page.
- */
-const getHome = (req, res) => {
-  res.sendFile(path.join(__dirname, "..", "views", "index.html"));
+exports.getHome = (req, res) => {
+  res.json({ message: "Server running" });
 };
 
-/**
- * Serve the about page.
- */
-const getAbout = (req, res) => {
-  res.sendFile(path.join(__dirname, "..", "views", "about.html"));
-};
-
-module.exports = {
-  getHome,
-  getAbout,
+exports.getAbout = (req, res) => {
+  res.json({ message: "About" });
 };
